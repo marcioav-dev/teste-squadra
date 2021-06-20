@@ -1,0 +1,120 @@
+<div class="container">
+    <form style="margin: 30px; padding: 30px;" #formSistema="ngForm" (ngSubmit)="enviarFormulario()">
+        <div class="alert alert-success" role="alert" *ngIf="isSuccess">
+            Operação realizada com sucesso.
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="error != null">
+            {{ error }}
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="float-start">Manter Sistema</h4>
+                <h6 class="float-end" style="color:red;">*Campo Obrigatório</h6>
+            </div>
+            <div class="card-body">
+                <div class="table table-responsive">
+                    <table class="table lg">
+                        <tr>
+                            <th scope="row">
+                                <label class="col-form-label">Descrição</label><label class="col-form-label" style="color: red;">&nbsp;*</label>
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="sistema.descricao" name="descricao">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <label class="col-form-label">Sigla</label><label class="col-form-label" style="color: red;">&nbsp;*</label>
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="sistema.sigla" name="sigla">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <label class="col-form-label">E-mail de atendimento do sistema</label>
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="sistema.email_de_atendimento_sistema" name="email_de_atendimento_sistema" style="margin-right: 70px; padding-right: 70px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <label class="col-form-label">URL</label>
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="sistema.url_sistema" name="url_sistema">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+
+               <div class="card" style="margin-top: 15px;"  *ngIf="sistema.id != null">
+                   <div class="card-header alert-success">
+                       <h5>Controle do Sistema</h5>
+                   </div>
+                   <div class="card-body">
+                        <div class="table table-responsive">
+                            <table class="table lg">
+                                <tr>
+                                    <th scope="row">
+                                        <label class="col-form-label">Status</label>
+                                    </th>
+                                    <td>
+                                        <select class="form-select" [(ngModel)]="sistema.status" name="status">
+                                            <option value="ATIVO">ATIVO</option>
+                                            <option value="INATIVO">INATIVO</option>
+                                            <option value="PENDENTE">PENDENTE</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label class="col-form-label">Usuário responsável pela última alteração</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" class="form-control"  [(ngModel)]="sistema.usuario_ultima_alteracao" name="usuario_ultima_alteracao">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label class="col-form-label">Data da última alteração</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" class="form-control" [(ngModel)]="sistema.data_ultima_alteracao" name="data_ultima_alteracao">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label class="col-form-label">Justificativa da última alteração;</label>
+                                    </th>
+                                    <td>
+                                        <textarea  rows="5" class="form-control" [(ngModel)]="sistema.justificativa_ultima_alteracao" name="justificativa_ultima_alteracao"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label class="col-form-label">Nova justificativa de alteração;</label>
+                                    </th>
+                                    <td>
+                                        <textarea  rows="5" class="form-control" [(ngModel)]="nova_justificativa_alteracao" name="nova_justificativa_alteracao"></textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                    </div>
+               </div>
+            </div>
+            <div class="card-footer">
+                <div>
+                    <button class="btn btn-default btn-lg" type="button" (click)="voltar()"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Voltar</button>
+                    <button class="btn btn-default btn-lg float-end" type="submit" *ngIf="!sistema.id"><i class="fa fa-save"></i>&nbsp;&nbsp;Salvar</button> 
+                    <button class="btn btn-default btn-lg float-end" type="submit" *ngIf="sistema.id"><i class="fa fa-save"></i>&nbsp;&nbsp;Salvar</button> 
+                </div>
+                      
+            </div>
+        </div>
+    </form>
+</div>

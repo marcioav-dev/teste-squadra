@@ -1,0 +1,85 @@
+<div class="container">
+    <form style="margin: 30px; padding: 30px;">
+        <div class="card">
+            <div class="alert alert-danger" role="alert" *ngIf="error != null">
+                {{ error }}
+            </div>
+            <div class="card-header">
+                <h4 class="float-start">Pesquisar Sistema</h4>
+            </div>
+            <div class="card-body">
+                <div class="table table-responsive">
+                    <table class="table lg">
+                        <tr>
+                            <th scope="row">
+                                <label class="col-form-label">Descrição</label>
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="descricao" name="descricao">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <label class="col-form-label">Sigla</label>
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="sigla" name="sigla">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <label class="col-form-label">E-mail de atendimento do sistema</label>
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="email_de_atendimento_sistema" name="email_de_atendimento_sistema">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card" *ngIf="sistemas.length > 0">
+                <div class="card-header">
+                    <div>
+                        <h5>Resultado da Consulta</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead class="table-success">
+                            <tr>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Sigla</th>
+                                <th scope="col">E-mail de atendimento</th>
+                                <th scope="col">URL</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let sistema of sistemas">
+                                <td>{{ sistema.descricao }}</td>
+                                <td>{{ sistema.sigla }}</td>
+                                <td>{{ sistema.email_de_atendimento_sistema }}</td>
+                                <td>{{ sistema.url_sistema }}</td>
+                                <td>{{ sistema.status }}</td>
+                                <td>
+                                    <button class="btn btn-default" routerLink="/cadastrar/{{ sistema.id }}">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <mat-paginator [length]="totalElements" [pageIndex]="page" [pageSize]="size" [showFirstLastButtons]="true" (page)="paginar($event)"></mat-paginator>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div>
+                    <button class="btn btn-default btn-lg float-end" style="margin: 10px;" type="button" (click)="novoSistema()"><i class="fa fa-file"></i>&nbsp;&nbsp;Novo Sistema</button>
+                    <button class="btn btn-default btn-lg float-end" style="margin: 10px;" type="button" (click)="limparCampos()"><i class="fa fa-eraser"></i>&nbsp;&nbsp;Limpar</button> 
+                    <button class="btn btn-default btn-lg float-end" style="margin: 10px;" type="button" (click)="pesquisarSistema()"><i class="fa fa-search"></i>&nbsp;&nbsp;Pesquisar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
